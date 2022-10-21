@@ -2,17 +2,20 @@
 
 require_once("vendor/autoload.php");
 
+require_once("vendor/hcodebr/php-classes/src/DB/Sql.php");
+
+use\Slim\Slim;
+use Hcode\Page;
+
 $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
 $app->get('/', function() {
-    
-	$sql = new HcodeDB\Sql();
 
-	$results = $sql->select("SELECT * FROM tb_usuarios");
-
-echo json_encode($results);
+	$page = new Page();
+	
+	$page->setTpl("index");
 
 });
 
