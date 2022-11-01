@@ -71,7 +71,7 @@ class User extends Model {
 
     }
 
-    public static function çistAll()
+    public static function listAll()
     {
 
         $sql = new Sql();
