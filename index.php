@@ -2,12 +2,12 @@
 session_start();
 require_once("vendor/autoload.php");
 
-// require_once("vendor/hcodebr/php-classes/src/DB/Sql.php");
+require_once("vendor/hcodebr/php-classes/src/DB/Sql.php");
 
-// use \Slim\Slim;
-// use Hcode\Page;
-// use Hcode\PageAdmin;
-// use Hcode\Model\User;
+use \Slim\Slim;
+use Hcode\Page;
+use Hcode\PageAdmin;
+use Hcode\Model\User;
 
 $app = new \Slim\Slim();
 
@@ -307,6 +307,21 @@ $app->post("/admin/categories/:idcategory", function($idcategory){
 
 	header('Location: /admin/categories');
 	exit;
+
+});
+
+$app-get("/categories/:idcategory", function($idcategory){
+
+	$category = new Category();
+
+	$category->get((int)$idcategory);
+
+	$page = new Page();
+	
+	$page->setTpl("category", [
+		'category'=>$categiry->getValues(),
+		'products'=>[]
+	]);
 
 });
 
