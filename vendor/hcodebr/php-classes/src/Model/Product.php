@@ -3,7 +3,7 @@
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
-use \Hoce\Model;
+use \Hcode\Model;
 
 class Product extends Model {
     
@@ -16,10 +16,10 @@ class Product extends Model {
 
     }
 
-    public static function checkList($List)
+    public static function checkList($list)
     {
 
-        foreach ($list as &$row) {
+        foreach ($list as & $row) {
             
             $p = new Product();
             $p->setData($row);

@@ -3,7 +3,7 @@
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
-use \Hoce\Model;
+use \Hcode\Model;
 
 class User extends Model {
 

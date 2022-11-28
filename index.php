@@ -2,7 +2,7 @@
 session_start();
 require_once("vendor/autoload.php");
 
-require_once("vendor/hcodebr/php-classes/src/DB/Sql.php");
+// require_once("vendor/hcodebr/php-classes/src/DB/Sql.php");
 
 use \Slim\Slim;
 
@@ -18,5 +18,10 @@ require_once("admin-categories.php");
 require_once("admin-products.php");
 
 $app->run();
+
+function dd($v){
+    var_dump($v);
+    die;
+}
 
 ?>
