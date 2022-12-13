@@ -39,11 +39,11 @@ class Category extends Model {
 
         $sql = new Sql();
 
-        $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", [
-            ':idcategory'=>$idcategory
-        ]);
+		$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", [
+			':idcategory'=>$idcategory
+		]);
 
-        $this->setData($results[0]);
+		$this->setData($results[0]);
 
     }
 
@@ -75,23 +75,23 @@ class Category extends Model {
 
     }
 
-    public function getProducts($reLated = true)
-    {
+    public function getProducts($related = true)
+	{
 
-        $sql = new Sql();
+		$sql = new Sql();
 
-        if (related === true) {
+		if ($related === true) {
 
-            return $sql->select("
-                SELECT * FROM tb_products WHERE idproduct IN(
-                    SELECT *
-                    FROM tb_products a
-                    INNER JOIN tb_productscategories b ON a.idproduct = b.idproduct
-                    WHERE b.idcategory = :idcategory
-                );
-            ", [
-                ':idcategory'=>$this->getidcategory()
-            ]);
+			return $sql->select("
+				SELECT * FROM tb_products WHERE idproduct IN(
+					SELECT a.idproduct
+					FROM tb_products a
+					INNER JOIN tb_productscategories b ON a.idproduct = b.idproduct
+					WHERE b.idcategory = :idcategory
+				);
+			", [
+				':idcategory'=>$this->getidcategory()
+			]);
 
         } else {
 

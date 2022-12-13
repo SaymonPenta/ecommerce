@@ -36,14 +36,14 @@ class Product extends Model {
 
         $sql = new Sql();
 
-        $results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllenght, :vlweight, :desurl)",
+        $results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl)",
             array(
             ":idproduct"=>$this->getidproduct(),
             ":desproduct"=>$this->getdesproduct(),
             ":vlprice"=>$this->getvlprice(),
             ":vlwidth"=>$this->getvlwidth(),
             ":vlheight"=>$this->getvlheight(),
-            ":vllenght"=>$this->getvllenght(),
+            ":vllength"=>$this->getvllength(),
             ":vlweight"=>$this->getvlweight(),
             ":desurl"=>$this->getdesurl()
         
@@ -58,7 +58,7 @@ class Product extends Model {
 
         $sql = new Sql();
 
-        $sql->select("SELECT * FROM tb_products WHERE idproduct= :idproduct", [
+        $results = $sql->select("SELECT * FROM tb_products WHERE idproduct = :idproduct", [
             ':idproduct'=>$idproduct
         ]);
 
@@ -121,16 +121,19 @@ class Product extends Model {
         switch ($extension) {
 
             case "jpg":
+            $image = imagecreatefromjpeg($file["tmp_name"]);
+            break;
+
             case "jpeg":
-            $image = imagecreatefromjpeg($file["tpm_name"]);
+            $image = imagecreatefromjpeg($file["tmp_name"]);
             break;
 
             case "gif";
-            $image = imagecreatefromgif($file["tpm_name"]);
+            $image = imagecreatefromgif($file["tmp_name"]);
             break;
 
             case "png":
-            $image = imagecreatefrompng($file["tpm_name"]);
+            $image = imagecreatefrompng($file["tmp_name"]);
             break;
 
         }
@@ -155,7 +158,7 @@ class Product extends Model {
 
         $sql = new Sql();
 
-        return $sql->select("SELECT * FROM tb_products WHERE desurl = :desurl LIMIT 1;", [
+        $rows = $sql->select("SELECT * FROM tb_products WHERE desurl = :desurl LIMIT 1;", [
             ':desurl'=>$desurl
         ]);
 

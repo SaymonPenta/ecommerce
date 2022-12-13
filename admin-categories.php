@@ -37,7 +37,7 @@ $app->post("/admin/categories/create", function(){
 
 	$category->setData($_POST);
 
-	$categiry->save();
+	$category->save();
 
 	header('Location: /admin/categorias');
 	exit;
@@ -100,7 +100,7 @@ $app->get("/admin/categories/:idcategory/products", function($idcategory){
 
 	$category->get((int)$idcategory);
 
-	$page = new Page();
+	$page = new PageAdmin();
 	
 	$page->setTpl("categories-products", [
 		'category'=>$category->getValues(),

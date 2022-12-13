@@ -29,7 +29,7 @@ class User extends Model {
     {
 
         if (
-            isset($_SESSION[User::SESSION])
+            !isset($_SESSION[User::SESSION])
             ||
             !$_SESSION[User::SESSION]
             ||
