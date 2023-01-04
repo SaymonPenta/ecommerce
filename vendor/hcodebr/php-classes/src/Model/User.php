@@ -9,8 +9,10 @@ class User extends Model {
 
     const SESSION = "User";
     const SECRET = "HcodePhp7_Secret";
+	const SECRET_IV = "HcodePhp7_Secret_IV";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
+	const SUCCESS = "UserSuccess";
 
     public static function getFromSession()
 	{
@@ -361,31 +363,6 @@ class User extends Model {
 		$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
 
 		User::clearSuccess();
-
-		return $msg;
-
-	}
-
-	public static function clearSuccess()
-	{
-
-		$_SESSION[User::SUCCESS] = NULL;
-
-	}
-
-	public static function setErrorRegister($msg)
-	{
-
-		$_SESSION[User::ERROR_REGISTER] = $msg;
-
-	}
-
-	public static function getErrorRegister()
-	{
-
-		$msg = (isset($_SESSION[User::ERROR_REGISTER]) && $_SESSION[User::ERROR_REGISTER]) ? $_SESSION[User::ERROR_REGISTER] : '';
-
-		User::clearErrorRegister();
 
 		return $msg;
 
